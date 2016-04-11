@@ -1,7 +1,15 @@
 var
   express = require('express'),
   app = express(),
+  mongoose = require('mongoose'), //express middleware
+  bodyParser = require('body-parser'),
+  dbUserName = 'puzzzkarapuz', //db host username
+  dbPass = '14AbkiBukH73', // db host user-password
+  // dbUrl = `mongodb://${dbUserName}:${dbPass}@ds019950.mlab.com:19950/puzi-data`, // url to connect to our DB
+  dbUrl = 'mongodb://<dbUserName>:<dbPass>@ds019950.mlab.com:19950/puzi-data',
   path = require('path'),
+  Product = require('./models/product'),
+  apiRouter = express.Router(),
   port = 6575;
 
 /*
@@ -9,6 +17,15 @@ var
 * an absolute path within our 'public' folder (that is a root folder as a client)
 * and serve static files from there
 */
+
+app.use(bodyParser.json());
+
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+
+mongoose.connect(dbUrl);
+
 app.use(express.static(
     path.resolve(__dirname + '/../public/')
 ));
@@ -24,6 +41,34 @@ app.use('/libs', express.static(
   path.resolve(__dirname + '/../node_modules')
 ));
 
+
+apiRouter.route('/products')
+  .get(function (req, res) {
+    Product.find({}, function(err, docs) {
+      if(err) throw new err;
+
+      // console.log(res.json(docs));
+      res.json(docs);
+    })
+  })
+  .post(function (req, res) {
+    Product.create(req.body, function (err, doc) {
+      if(err) {
+        res.json({
+          success: false,
+          errors: err.errors
+        });
+
+        return;
+      } else {
+        res.json({
+          success: true
+        });
+      }
+    })
+  })
+
+app.use('/api', apiRouter);
 
 /*
 * on every request our server will send
