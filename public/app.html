@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Phonecat</title>
+    <link rel="stylesheet" href="/libs/bootstrap/dist/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8" />
+    <link rel="stylesheet" href="/libs/bootstrap/dist/css/bootstrap-theme.min.css" media="screen" title="no title" charset="utf-8" />
+  </head>
+  <body >
+    <div class="main__wrapper">
+      <div class="wrapper">
+        <header>
+          <div class="container">
+            <nav class="navbar navbar-default" ng-controller="navController">
+              <div class="container">
+
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand" href="#">myApp</a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="nav1">
+
+                  <ul class="nav navbar-nav" >
+                    <li ng-class='{active: isActive("/products")}'><a href="#/products">Products</a></li>
+                    <li ng-class='{active: isActive("/addProduct")}'><a href="#/addProduct">Add Product</a></li>
+                  </ul>
+        <!--
+                  <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">Login</a></li>
+                  </ul>
+         -->
+                </div>
+
+              </div>
+            </nav>
+          </div>
+        </header>
+        <div class="content__body">
+          <div class="container">
+            <div class="" ng-view>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- libs -->
+    <script src="/libs/jquery/dist/jquery.min.js"></script>
+    <script src="/libs/angular/angular.min.js"></script>
+    <script src="/libs/angular-route/angular-route.min.js"></script>
+
+    <!-- config file -->
+    <script src="/scripts/app.js"></script>
+
+    <!-- controllers  -->
+    <script src="/scripts/controllers/navController.js"></script>
+    <script src="/scripts/controllers/productsListController.js"></script>
+    <script src="/scripts/controllers/createNewProductController.js"></script>
+
+    <!-- services -->
+    <script src="/scripts/services/productsService.js"></script>
+    <script src="/scripts/services/notificationService.js"></script>
+
+    <!-- directives -->
+    <script src="/scripts/directives/sortingArrowDirection.js"></script>
+    <script src="/scripts/directives/notificationDirective.js"></script>
+
+  </body>
+</html>

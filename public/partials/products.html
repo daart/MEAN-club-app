@@ -1,0 +1,72 @@
+<h2>Products list</h2>
+
+<br>
+
+<div class="alert alert-warning" ng-show="products.length === 0">
+  No data found yet. Please proceed to <b><a href="#/create">create new product</a></b> page.
+</div>
+
+<form name="filter" ng-show="products.length > 1">
+  <div class="form-group">
+    <input name="search" ng-model="search" type="text" class="form-control input-lg" placeholder="Search by name or snippet" autofocus>
+  </div>
+</form>
+
+{{asd}}
+<table class="table table-striped" >
+  <thead>
+    <tr>
+      <th>
+        <a href="#" ng-click="setOrderProperty('id')">
+          id
+          <arrowdirection ng-show="orderProperty === 'id' "  direction="{{orderReversed}}"></arrowdirection>
+        </a>
+      </th>
+      <th>
+        <a href="" ng-click="setOrderProperty('name')">
+          name
+          <arrowdirection ng-show="orderProperty === 'name' "  direction="{{orderReversed}}"></arrowdirection>
+        </a>
+      </th>
+      <!-- <th>
+        tags
+      </th> -->
+      <th>
+        <a href="" ng-click="setOrderProperty('snippet')">
+          snippet
+          <arrowdirection ng-show="orderProperty === 'snippet' "  direction="{{orderReversed}}"></arrowdirection>
+        </a>
+      </th>
+      <th>
+        <a href="" ng-click="setOrderProperty('price')">
+          price
+          <arrowdirection ng-show="orderProperty === 'price' "  direction="{{orderReversed}}"></arrowdirection>
+        </a>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="el in products | filter: search | orderBy : orderProperty : orderReversed " >
+      <td>
+        <!-- <a href="#/product/{{el.id}}">{{el.id}}</a> -->
+        {{el.id}}
+      </td>
+      <td>
+        {{el.name}}
+      </td>
+      </td>
+      <td>
+        {{el.snippet}}
+      </td>
+      <!-- <td>
+        <ul>
+          <li ng-repeat="tag in el.tags">{{tag}}</li>
+        </ul>
+      </td> -->
+      <td>
+        {{el.price}}
+      </td>
+      <td><button class="btn btn-danger btn-xs" ng-click="deleteProduct(el.id)">Remove</button></td>
+    </tr>
+  </tbody>
+</table>
