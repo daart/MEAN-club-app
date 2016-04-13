@@ -5,11 +5,12 @@ var
   bodyParser = require('body-parser'),
   dbUserName = 'puzzzkarapuz', //db host username
   dbPass = '14AbkiBukH73', // db host user-password
-  // dbUrl = `mongodb://${dbUserName}:${dbPass}@ds019950.mlab.com:19950/puzi-data`, // url to connect to our DB
-  dbUrl = 'mongodb://<dbUserName>:<dbPass>@ds019950.mlab.com:19950/puzi-data',
+  dbUrl = `mongodb://${dbUserName}:${dbPass}@ds013310.mlab.com:13310/dibil_db`, // url to connect to our DB
+
+  // dbUrl = 'mongodb://<dbUserName>:<dbPass>@ds019950.mlab.com:19950/puzi-data',
   path = require('path'),
-  Product = require('./models/product'),
   apiRouter = express.Router(),
+  Product = require('./models/product'),
   port = 6575;
 
 /*
@@ -45,9 +46,8 @@ app.use('/libs', express.static(
 apiRouter.route('/products')
   .get(function (req, res) {
     Product.find({}, function(err, docs) {
-      if(err) throw new err;
+      if(err) throw err;
 
-      // console.log(res.json(docs));
       res.json(docs);
     })
   })

@@ -10,23 +10,20 @@
     $scope.orderProperty = '';
     $scope.orderReversed = true;
 
-    console.log(productsService.getProducts());
-    // productsService.getProducts()
-    //   .then( function( res ) {
-    //     $scope.products = res.data;
-    //     console.log($scope.products);
-    // });
+    productsService.getProducts()
+      .then( function( res ) {
+        $scope.products = res.data;
+        console.log($scope.products);
+    });
 
     $scope.setOrderProperty = function(prop) {
       if($scope.orderProperty === prop) {
         $scope.orderReversed = !$scope.orderReversed;
-        console.log($scope.orderReversed);
 
       } else {
         $scope.orderReversed = false;
         $scope.orderProperty = prop;
       }
-      console.log($scope.orderReversed);
     }
 
     // $scope.deleteProduct = function(prodId) {

@@ -11,7 +11,11 @@
 
     $scope.handleFormSubmit = function(){
       if($scope.addForm.$valid) {
-        productsService.addProduct(_serializeForm());
+        // productsService.addProduct(_serializeForm());
+        productsService.addProduct()
+          .then(function (res) {
+            console.log(res);
+          })
       }
 
       $scope.formData = {};
@@ -21,7 +25,7 @@
 
     function _serializeForm() {
       return {
-        id: $scope.formData.id,
+        // id: $scope.formData.id,
         name: $scope.formData.name,
         snippet: $scope.formData.snippet,
         price: $scope.formData.price

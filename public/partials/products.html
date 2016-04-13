@@ -12,7 +12,6 @@
   </div>
 </form>
 
-{{asd}}
 <table class="table table-striped" >
   <thead>
     <tr>
@@ -46,10 +45,10 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="el in products | filter: search | orderBy : orderProperty : orderReversed " >
+    <tr ng-repeat="el in products | filter: search | orderBy : orderProperty : orderReversed track by $index" >
       <td>
         <!-- <a href="#/product/{{el.id}}">{{el.id}}</a> -->
-        {{el.id}}
+        {{el._id}}
       </td>
       <td>
         {{el.name}}

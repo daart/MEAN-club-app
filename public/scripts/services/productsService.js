@@ -7,26 +7,23 @@
 
     function productsService($http) {
 
-      // var
-      //   _storageKey = 'products',
-      //   _products = JSON.parse(localStorage.getItem(_storageKey)) || [];
-
         function getProducts() {
-          return $http.get('/api/products')
-          // return _products;
+          // console.log($http.get('/api/products'));
+          return $http.get('/api/products');
         }
 
         function addProduct(prod) {
+          return $http.post('/api/products');
           // _products.push(prod);
           // updateStorage();
         }
 
         function removeProduct(productItem) {
-          if(_products.length > 0) {
-            _products = _products.filter(function( prodEl ){
-              return prodEl.id !== productItem;
-            })
-          }
+          // if(_products.length > 0) {
+          //   _products = _products.filter(function( prodEl ){
+          //     return prodEl.id !== productItem;
+          //   })
+          // }
 
           // updateStorage();
           // return _products;
